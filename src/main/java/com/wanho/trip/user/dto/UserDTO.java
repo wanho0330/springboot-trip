@@ -2,6 +2,7 @@ package com.wanho.trip.user.dto;
 
 
 import com.wanho.trip.user.entity.User;
+import com.wanho.trip.user.util.UserStatus;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -13,7 +14,6 @@ public class UserDTO {
 
     @Getter
     @AllArgsConstructor
-    @Builder
     public static class SignUpReq {
         @NotBlank
         @Email
@@ -22,22 +22,12 @@ public class UserDTO {
         private String password;
         @NotBlank
         private String name;
-        private int status;
-
-        public User toEntity(String encodePassword) {
-            return User.builder()
-                    .email(this.getEmail())
-                    .password(encodePassword)
-                    .name(this.getName())
-                    .status(this.getStatus())
-                    .build();
-        }
+        private UserStatus status;
     };
 
     @Getter
     @AllArgsConstructor
-    @Builder
-    public static class LoginReq {
+    public static class SignInReq {
         @NotBlank
         @Size(min = 5, max = 20)
         private String email;
@@ -54,11 +44,19 @@ public class UserDTO {
         private Long id;
         private String email;
         private String name;
-
-        public InfoRes(User user) {
-            this.id = user.getId();
-            this.email = user.getEmail();
-            this.name = user.getName();
-        }
     }
+
+
+    @Getter
+    @AllArgsConstructor
+    @Builder
+    public static class ListRes {
+        private Long id;
+        private String email;
+        private String name;
+        private UserStatus status;
+    }
+
+
+
 }
