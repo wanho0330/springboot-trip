@@ -6,11 +6,11 @@ import lombok.Getter;
 @Getter
 public class InvalidInputException extends RuntimeException {
     private final String filedName;
-    private final String message;
+    private final ErrorCode errorCode;
 
-    public InvalidInputException(String filedName, String message) {
-        super(message);
+    public InvalidInputException(String filedName, ErrorCode errorCode) {
+        super(errorCode.getMessage());
         this.filedName = filedName;
-        this.message = message;
+        this.errorCode = errorCode;
     }
 }

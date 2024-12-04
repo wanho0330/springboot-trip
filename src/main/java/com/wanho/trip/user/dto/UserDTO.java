@@ -25,6 +25,12 @@ public class UserDTO {
         private UserStatus status;
     };
 
+    @AllArgsConstructor
+    @Builder
+    public static class SignUpRes {
+        private Long id;
+    }
+
     @Getter
     @AllArgsConstructor
     public static class SignInReq {
